@@ -9,9 +9,9 @@ const ProductCard = ({ image="", name="" }) => {
       
     // </div>
 
-    <div className="card bg-base-100 w-96 shadow-sm">
+    <div className="card bg-white w-96 shadow-sm">
       <figure>
-        <img src={image} alt={name || "Product"} />
+        <img className='z-10' src={image} alt={name || "Product"} />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{name || "Product"}</h2>
