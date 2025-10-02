@@ -1,5 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+
+
 .header {
-    background-color: #E65C00;
-    color: black;
+  display: flex;
+  justify-content: space-between; /* logo on left, nav on right */
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #E65C00;
+  color: black;
+  font-family: 'Rye', sans-serif;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Logo / site title */
+.header a:first-child {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+/* Navigation list */
+.header ul {
+  display: flex;
+  gap: 1.5rem; /* spacing between links */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navigation links */
+.header ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Hover / focus effect */
+.header ul li a:hover,
+.header ul li a:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #f3f4f6; /* slightly off-white for contrast */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .header ul li a {
+    display: block;
+    width: 100%;
+  }
 }
 

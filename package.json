@@ -9,19 +9,30 @@
     "lint": "eslint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "bcrypt": "^6.0.0",
     "next": "15.5.4",
     "postgres": "^3.4.7",
+=======
+    "next": "15.5.4",
+>>>>>>> 2c9ca5b155af3af335b0d52544fff90c61ee30dc
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+<<<<<<< HEAD
     "@types/bcrypt": "^6.0.0",
+=======
+>>>>>>> 2c9ca5b155af3af335b0d52544fff90c61ee30dc
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+<<<<<<< HEAD
+=======
+    "daisyui": "^5.1.26",
+>>>>>>> 2c9ca5b155af3af335b0d52544fff90c61ee30dc
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "tailwindcss": "^4",
