@@ -3,6 +3,7 @@ import Header from "./Header/Header"
 import Footer from "./Footer/Footer";
 import ProductCard from './components/ProductCard'
 import styles from './styles/Home.module.css'
+import Link from "next/link";
 
 export default function Home() {
   const products = [
@@ -18,9 +19,10 @@ export default function Home() {
       <div className={styles.gridContainer}>
         
         {products.map((p, i) => (
-          <div key={i} className={styles.card}>
-            <ProductCard image={p[1]} name={p[0]}/>
-          </div>
+          <Link key={i} className={styles.card} href={`/products/${p[0].toLowerCase()}`}>
+              <ProductCard image={p[1]} name={p[0]}/>
+          </Link>
+          
         ))}
         
       </div>

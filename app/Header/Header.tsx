@@ -5,9 +5,9 @@ import styles from './header.module.css'
 const Header = () => {
   return (
     <>
-      <div className="navbar bg-base-500 shadow-sm sticky top-0 z-500 backdrop-blur-sm">
+      <div className="navbar bg-base-100/70 shadow-sm sticky top-0 z-500 backdrop-blur-sm">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Handcrafted Haven</a>
+          <Link href='/' className="btn btn-ghost text-xl">Handcrafted Haven</Link>
         </div>
         <div className="flex-none">
           <div className="dropdown dropdown-end">
