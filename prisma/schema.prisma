@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  favorites String[]
+  items     Item[]   @relation("UserItems") // Relation name added
+}
+
+model Item {
+  product_id String  @id @default(uuid())
+  creator    User    @relation("UserItems", fields: [creator_id], references: [id])
+  creator_id String
+  name       String
+  price      Int
+  image      String
+  tags       String
+}
+
+model Tag {
+  id        String @id @default(uuid())
+  tag_name  String
+}
