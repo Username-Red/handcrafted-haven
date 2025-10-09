@@ -1,10 +1,12 @@
 import React from "react";
-import { prisma } from "../lib/prisma";
+import { PrismaClient } from "../../app/generated/prisma";
+
+const prisma = new PrismaClient();
 
 export default async function PlaceHolder() {
   const users = await prisma.user.findMany();
-  const items = await prisma.item.findMany();
-  const tags = await prisma.tag.findMany();
+  const products = await prisma.product.findMany();
+  const reviews = await prisma.review.findMany();
 
   return (
     <div className="p-10 space-y-10">
@@ -21,27 +23,28 @@ export default async function PlaceHolder() {
         </ul>
       </div>
 
-      {/* Items Section */}
+      {/* Products Section */}
       <div>
-        <h2 className="text-2xl font-bold mb-3">Items</h2>
+        <h2 className="text-2xl font-bold mb-3">Products</h2>
         <ul className="list-disc pl-6">
-          {items.map((item) => (
-            <li key={item.product_id}>
-              <span className="font-semibold">{item.name}</span> – $
-              {item.price}{" "}
-              <span className="text-gray-500">(Creator ID: {item.creator_id})</span>
+          {products.map((product) => (
+            <li key={product.id}>
+              <span className="font-semibold">{product.name}</span> – $
+              {product.price.toFixed(2)}{" "}
+              <span className="text-gray-500">(Seller ID: {product.sellerId})</span>
             </li>
           ))}
         </ul>
       </div>
 
-      {/* Tags Section */}
+      {/* Reviews Section */}
       <div>
-        <h2 className="text-2xl font-bold mb-3">Tags</h2>
+        <h2 className="text-2xl font-bold mb-3">Reviews</h2>
         <ul className="list-disc pl-6">
-          {tags.map((tag) => (
-            <li key={tag.id}>
-              <span className="font-semibold">{tag.tag_name}</span>
+          {reviews.map((review) => (
+            <li key={review.id}>
+              <span className="font-semibold">Rating: {review.rating}</span> –{" "}
+              {review.comment || "No comment"} (User ID: {review.userId}, Product ID: {review.productId})
             </li>
           ))}
         </ul>
