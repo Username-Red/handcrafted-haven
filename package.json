@@ -6,9 +6,15 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prisma": "prisma",
+    "seed": "ts-node prisma/seed.js"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.js"
   },
   "dependencies": {
+    "@prisma/client": "^6.17.0",
     "@heroicons/react": "^2.2.0",
     "bcrypt": "^6.0.0",
     "clsx": "^2.1.1",
@@ -24,14 +30,16 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/bcrypt": "^6.0.0",
-    "@types/node": "^20",
+    "@types/node": "^20.19.19",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "daisyui": "^5.1.26",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
+    "prisma": "^6.17.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   },
   "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac"
 }
