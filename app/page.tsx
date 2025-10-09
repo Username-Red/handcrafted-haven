@@ -1,33 +1,39 @@
-import Image from "next/image";
-import Header from "./Header/Header"
-import Footer from "./Footer/Footer";
-import ProductCard from './components/ProductCard'
-import styles from './styles/Home.module.css'
+import { PrismaClient } from "@/app/generated/prisma";
 import Link from "next/link";
+import ProductCard from "./components/ProductCard";
+import styles from "./styles/Home.module.css";
 
-export default function Home() {
-  const products = [
-    ['Sebastian', '/images/Sebastian.png'], 
-    ['Lucy', '/images/Lucy.png'], 
-    ['Kris', '/images/Kris.png'], 
-    ['Jethro', '/images/Jet.png']
-  ] //Placeholder until database integration
-  
+const prisma = new PrismaClient();
+
+export default async function Home() {
+  // Fetch all products with their seller's basic info
+  const products = await prisma.product.findMany({
+    include: {
+      seller: {
+        select: { name: true, email: true },
+      },
+    },
+    orderBy: { createdAt: "desc" },
+  });
+
   return (
-
-    <>
-      <div className={styles.gridContainer}>
-        
-        {products.map((p, i) => (
-          <Link key={i} className={styles.card} href={`/products/${p[0].toLowerCase()}`}>
-              <ProductCard image={p[1]} name={p[0]}/>
+    <div className={styles.gridContainer}>
+      {products.length === 0 ? (
+        <p className="text-center text-gray-500 col-span-full">
+          No products found. Add some to your database!
+        </p>
+      ) : (
+        products.map((p) => (
+          <Link key={p.id} className={styles.card} href={`/products/${p.id}`}>
+            <ProductCard
+              image={p.imageUrl || "/images/placeholder.webp"}
+              name={p.name}
+              seller={p.seller?.name || "Unknown Seller"}
+              price={p.price}
+            />
           </Link>
-          
-        ))}
-        
-      </div>
-    </>
-    
-
+        ))
+      )}
+    </div>
   );
 }

@@ -1,27 +1,29 @@
-import React from 'react'
-import AddToCart from './AddToCart'
+import Image from "next/image";
 
-const ProductCard = ({ image="", name="" }) => {
-  return (
-    // <div className="bg-white rounded-lg shadow-md overflow-hidden p-4 hover:shadow-xl transition-shadow duration-300 my-5 flex flex-col items-center">
-    //   <img src={image} alt={name || "Product"} className="w-full h-48 object-cover rounded-md mb-4" />
-    //   {name && <h3 className="text-lg font-semibold mb-2 text-center">{name}</h3>}
-      
-    // </div>
-
-    <div className="card bg-white w-96 shadow-sm">
-      <figure>
-        <img className='z-10' src={image} alt={name || "Product"} />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">{name || "Product"}</h2>
-        <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-        <div className="card-actions justify-end">
-          <AddToCart />
-        </div>
-      </div>
-    </div>
-  )
+interface ProductCardProps {
+  image: string;
+  name: string;
+  seller?: string;
+  price?: number;
 }
 
-export default ProductCard
+export default function ProductCard({ image, name, seller, price }: ProductCardProps) {
+  return (
+    <div className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-all">
+      <Image
+        src={image}
+        alt={name}
+        width={300}
+        height={300}
+        className="object-cover w-full h-64"
+      />
+      <div className="p-4">
+        <h3 className="text-lg font-semibold">{name}</h3>
+        {seller && <p className="text-sm text-gray-500">By {seller}</p>}
+        {price !== undefined && (
+          <p className="mt-2 text-blue-600 font-medium">${price.toFixed(2)}</p>
+        )}
+      </div>
+    </div>
+  );
+}
