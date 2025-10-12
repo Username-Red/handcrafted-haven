@@ -1,5 +1,6 @@
 import { PrismaClient } from "@/app/generated/prisma";
 import AddToCart from "@/app/components/AddToCart";
+import Link from "next/link";
 
 const prisma = new PrismaClient();
 
@@ -41,12 +42,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <p className="py-6 text-lg">{product.description}</p>
 
           {/* Seller Info */}
-          <p className="text-sm text-gray-600 mt-2">
+          <Link 
+            href={`/seller/${product.seller.id}`} 
+            className="text-sm text-gray-600 mt-2 hover:text-blue-600 transition-colors"
+          >
             Sold by:{" "}
-            <span className="font-semibold">
+            <span className="font-semibold underline hover:no-underline">
               {product.seller.name || "Unknown Seller"}
             </span>
-          </p>
+          </Link>
+
 
           {/* Add to Cart Button */}
           <div className="mt-8">
