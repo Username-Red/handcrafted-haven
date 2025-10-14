@@ -1,5 +1,5 @@
 import React from "react";
-import { PrismaClient } from "../../app/generated/prisma";
+import { PrismaClient } from "@/app/generated/prisma";
 
 const prisma = new PrismaClient();
 
