@@ -5,7 +5,7 @@ import Link from "next/link";
 const prisma = new PrismaClient();
 
 type SellerPageProps = {
-  params: { sellerId: string? };
+  params: { sellerId?: string };
 };
 
 export default async function SellerPage({ params }: SellerPageProps) {
